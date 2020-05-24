@@ -24,7 +24,7 @@ class Proxy
   def method_missing(name, *args, &block)
     if name
       @messages << name
-      @object.send(name, *args, &block)
+      @object.__send__(name, *args, &block)
     else
       super
     end
