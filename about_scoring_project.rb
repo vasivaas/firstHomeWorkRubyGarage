@@ -28,9 +28,55 @@ require File.expand_path(File.dirname(__FILE__) + '/neo')
 # More scoring examples are given in the tests below:
 #
 # Your goal is to write the score method.
+SCORE = { 1 => { 1 => 100,
+                 2 => 200,
+                 3 => 1000,
+                 4 => 1100,
+                 5 => 1200,
+                 6 => 2000 },
+          2 => { 1 => 0,
+                 2 => 0,
+                 3 => 200,
+                 4 => 0,
+                 5 => 0,
+                 6 => 400 },
+          3 => { 1 => 0,
+                 2 => 0,
+                 3 => 300,
+                 4 => 0,
+                 5 => 0,
+                 6 => 600 },
+          4 => { 1 => 0,
+                 2 => 0,
+                 3 => 400,
+                 4 => 0,
+                 5 => 0,
+                 6 => 800 },
+          5 => { 1 => 50,
+                 2 => 100,
+                 3 => 500,
+                 4 => 550,
+                 5 => 600,
+                 6 => 1000 },
+          6 => { 1 => 0,
+                 2 => 0,
+                 3 => 600,
+                 4 => 0,
+                 5 => 0,
+                 6 => 1200 } }.freeze
 
 def score(dice)
-  # You need to write this method
+  score = 0
+  return score if dice.empty?
+
+  dice = dice.sort
+  count_dice = []
+  arr = dice.uniq
+  arr.each { |item| count_dice << dice.count(item) }
+  (0...count_dice.length).each do |x|
+    score += SCORE[arr[x]][count_dice[x]]
+  end
+  score
 end
 
 class AboutScoringProject < Neo::Koan
