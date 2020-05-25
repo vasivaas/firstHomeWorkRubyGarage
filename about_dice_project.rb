@@ -18,7 +18,7 @@ class DiceSet
     # (1..number).each { arr << rand(7) }
     # @values = arr
     # or
-    @values = (1..number).collect { rand(7) } # or (1..number).map { rand(7) }
+    @values = (1..number).collect { rand(1..6) } # or (1..number).map { rand(7) }
     # arr = (1..number).map { rand(7) }
     # @values = arr.map { |iem| item = 1 if item.zero? }
   end
